@@ -1,0 +1,70 @@
+specVersion: 1.0.0
+indexerHints:
+  prune: auto
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: DefaultCollateralFactory
+    network: mainnet
+    source:
+      address: "0x1BC8FCFbE6Aa17e4A7610F51B888f34583D202Ec"
+      abi: DefaultCollateralFactory
+      startBlock: 20011312
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - AddEntity
+      abis:
+        - name: DefaultCollateralFactory
+          file: ./abis/DefaultCollateralFactory.json
+      eventHandlers:
+        - event: AddEntity(indexed address)
+          handler: handleAddEntity
+      file: ./src/default-collateral-factory.ts
+  - kind: ethereum
+    name: DefaultCollateral_wstETH
+    network: mainnet
+    source:
+      address: "0xC329400492c6ff2438472D4651Ad17389fCb843a"
+      abi: DefaultCollateral_wstETH
+      startBlock: 20011341
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - Deposit
+        - IncreaseLimit
+        - Initialized
+        - IssueDebt
+        - RepayDebt
+        - SetLimitIncreaser
+        - Transfer
+        - Withdraw
+      abis:
+        - name: DefaultCollateral_wstETH
+          file: ./abis/DefaultCollateral_wstETH.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApproval
+        - event: Deposit(indexed address,indexed address,uint256)
+          handler: handleDeposit
+        - event: IncreaseLimit(uint256)
+          handler: handleIncreaseLimit
+        - event: Initialized(uint64)
+          handler: handleInitialized
+        - event: IssueDebt(indexed address,indexed address,uint256)
+          handler: handleIssueDebt
+        - event: RepayDebt(indexed address,indexed address,uint256)
+          handler: handleRepayDebt
+        - event: SetLimitIncreaser(indexed address)
+          handler: handleSetLimitIncreaser
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+        - event: Withdraw(indexed address,indexed address,uint256)
+          handler: handleWithdraw
+      file: ./src/default-collateral-wst-eth.ts

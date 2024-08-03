@@ -1,0 +1,24 @@
+{
+  "name": "symbiotic-ethereum",
+  "license": "UNLICENSED",
+  "scripts": {
+    "codegen": "graph codegen",
+    "build": "graph build",
+    "deploy": "graph deploy --node https://api.studio.thegraph.com/deploy/ symbiotic-ethereum",
+    "create-local": "graph create --node http://localhost:8020/ symbiotic-ethereum",
+    "remove-local": "graph remove --node http://localhost:8020/ symbiotic-ethereum",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 symbiotic-ethereum",
+    "test": "graph test"
+  },
+  "dependencies": {
+    "@graphprotocol/graph-cli": "0.77.0",
+    "@graphprotocol/graph-ts": "0.32.0"
+  },
+  "devDependencies": {
+    "axios": "^1.7.2",
+    "dotenv": "^16.4.5",
+    "ethers": "^6.13.1",
+    "matchstick-as": "0.5.0",
+    "typescript": "^5.5.2"
+  }
+}
